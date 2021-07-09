@@ -23,7 +23,7 @@ source "amazon-ebs" "ami_jd" {
   ami_name      = "ami-jd"
   instance_type = "t2.micro"
   region        = "us-east-1"
-  ssh_username = "jose"
+  ssh_username = "ec2-user"
   encrypt_boot = "true"
   source_ami      = "ami-09af59f76f41224de"
   skip_create_ami = false
