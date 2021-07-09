@@ -6,5 +6,5 @@
   tasks:
    - name: verificar que existe la repo
      yum:
-     name: [amazon-linux-extras]
-     state: present
+      name: [amazon-linux-extras]
+      state: present
