@@ -1,14 +1,8 @@
-resource "aws_default_vpc" "default" {
-  tags = {
-    Name = "Default VPC"
-  }
-}
-
-resource "aws_default_security_group" "internal" {
-  vpc_id = aws_default_vpc.default.id
+resource "aws_default_security_group" "interno" {
+  vpc_id =  aws_vpc.vpc.id
 
   tags = {
-    Name = "default internal sg"
+    Name = "default interno sg"
   }
 
   ingress {
@@ -29,9 +23,8 @@ resource "aws_default_security_group" "internal" {
 
 }
 
-resource "aws_default_security_group" "accesos_web" {
-  vpc_id = aws_default_vpc.default.id
-
+resource "aws_security_group" "web" {
+  vpc_id =  aws_vpc.vpc.id
   tags = {
     Name = "Acceso web"
   }
@@ -46,7 +39,7 @@ resource "aws_default_security_group" "accesos_web" {
   }
 
   ingress {
-    description      = "http traffic"
+    description      = "trafico https"
     from_port        = 443
     to_port          = 443
     protocol         = "tcp"

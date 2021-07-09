@@ -16,28 +16,29 @@ packer {
   }
 }
 
-source "amazon-ebs" "ubuntu" {
+source "amazon-ebs" "ami_jd" {
   access_key    = var.aws_access_key
   secret_key    = var.aws_secret_key
-  ami_name      = "wordpress-jd"
+  ssh_timeout     = "30s"
+  ami_name      = "ami-jd"
   instance_type = "t2.micro"
   region        = "us-east-1"
-  source_ami_filter {
-    filters = {
-      name                = "ubuntu/images/*ubuntu-xenial-16.04-amd64-server-*"
-      root-device-type    = "ebs"
-      virtualization-type = "hvm"
-    }
-    most_recent = true
-    owners      = ["099720109477"]
-  }
-  ssh_username = "ubuntu"
+  ssh_username = "jose"
   encrypt_boot = "true"
+  source_ami      = "ami-0db9040eb3ab74509"
+  skip_create_ami = false
 }
+
+
+
+
+  
 
 build {
   sources = [
     "source.amazon-ebs.ubuntu"
   ]
- 
+  provisioner "ansible" {
+    playbook_file = "playbook.yml"
+  }
 }
