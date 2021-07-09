@@ -36,7 +36,7 @@ source "amazon-ebs" "ami_jd" {
 
 build {
   sources = [
-    "source.amazon-ebs.ubuntu"
+    "source.amazon-ebs.ami_jd"
   ]
   provisioner "ansible" {
     playbook_file = "playbook.yml"
