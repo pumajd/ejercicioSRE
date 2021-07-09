@@ -19,7 +19,7 @@ packer {
 source "amazon-ebs" "ami_jd" {
   access_key    = var.aws_access_key
   secret_key    = var.aws_secret_key
-  ssh_timeout     = "60s"
+  ssh_timeout     = "180s"
   ami_name      = "ami-jd"
   instance_type = "t2.micro"
   region        = "us-east-1"
