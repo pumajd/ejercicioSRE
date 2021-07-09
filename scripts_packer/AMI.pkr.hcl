@@ -25,7 +25,7 @@ source "amazon-ebs" "ami_jd" {
   region        = "us-east-1"
   ssh_username = "jose"
   encrypt_boot = "true"
-  source_ami      = "ami-0db9040eb3ab74509"
+  source_ami      = "ami-09af59f76f41224de"
   skip_create_ami = false
 }
 
