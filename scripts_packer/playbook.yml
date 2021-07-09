@@ -1,10 +1,10 @@
 ---
 - name: set up wordpress
-    hosts: default
-    become: true
+  hosts: default
+  become: true
     
-    task:
-        - name: verificar que existe la repo
-          yum:
-            name: [amazon-linux-extras]
-            state: present
+  task:
+   - name: verificar que existe la repo
+     yum:
+     name: [amazon-linux-extras]
+     state: present
