@@ -3,7 +3,7 @@
   hosts: default
   become: true
     
-  task:
+  tasks:
    - name: verificar que existe la repo
      yum:
      name: [amazon-linux-extras]
