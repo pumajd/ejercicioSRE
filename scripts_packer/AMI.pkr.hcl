@@ -1,10 +1,10 @@
 variable "aws_access_key" {
   sensitive = true
-  default = "AKIA5DOY3TOUCV66IIAH"
+  default = ""
 }
 variable "aws_secret_key" {
   sensitive = true
-  default = "bP9d/5jY6Fxv9ukDBFVAAiOPa1nYrJhCwORtfYM2"
+  default = ""
 }
 
 packer {
