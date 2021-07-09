@@ -1,5 +1,5 @@
 resource "aws_default_security_group" "interno" {
-  vpc_id =  aws_vpc.vpc.id
+  vpc_id = aws_vpc.vpc.id
 
   tags = {
     Name = "default interno sg"
@@ -24,7 +24,7 @@ resource "aws_default_security_group" "interno" {
 }
 
 resource "aws_security_group" "web" {
-  vpc_id =  aws_vpc.vpc.id
+  vpc_id = aws_vpc.vpc.id
   tags = {
     Name = "Acceso web"
   }
