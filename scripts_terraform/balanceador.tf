@@ -1,3 +1,4 @@
+# LB load balance balanceador de carga
 resource "aws_lb" "web" {
   name               = "web"
   internal           = false
@@ -14,7 +15,7 @@ resource "aws_lb" "web" {
 }
 
 
-
+# grupo de balanceardor de carga
 resource "aws_lb_target_group" "web" {
   name     = "web-tg"
   port     = 80
@@ -22,7 +23,7 @@ resource "aws_lb_target_group" "web" {
   vpc_id   = aws_vpc.vpc.id
 }
 
-
+# Listener del balanceador
 resource "aws_lb_listener" "web" {
   load_balancer_arn = aws_lb.web.arn
   port              = "80"
@@ -33,53 +34,24 @@ resource "aws_lb_listener" "web" {
   }
 }
 
+# Zona dns
 resource "aws_route53_zone" "primary" {
   name = "josed.com"
 }
 
+# Interface de red
 resource "aws_network_interface" "interfaz" {
   subnet_id   = aws_subnet.a.id
   private_ips = ["10.0.0.12"]
-
+  security_groups = [aws_security_group.web.id,]	
   tags = {
     Name = "primary_network_interface"
   }
 }
 
-resource "aws_instance" "instancia" {
-  ami                    = "ami-02073b6d72494fefa"
-  instance_type          = "t2.micro"
-  monitoring             = true
-   network_interface {
-    network_interface_id = aws_network_interface.interfaz.id
-    device_index         = 0
-  }
-  
-  vpc_security_group_ids = [
-      aws_security_group.web.id,
-  ]
-  tags          = {
-    Name        = "Application Server"
-    Environment = "production"
-  }
-   root_block_device {
-    delete_on_termination = true
-  }
-}
-
+# ip publica elastica
 resource "aws_eip" "lb" {
   instance = aws_instance.instancia.id
   vpc      = true
 }
-
-
-
-
-
-
-
-
-
-
-
 

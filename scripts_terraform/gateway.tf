@@ -1,3 +1,4 @@
+# Virtual private cloud 
 resource "aws_vpc" "vpc" {
   cidr_block = "10.0.0.0/16"
   tags = {
@@ -7,6 +8,7 @@ resource "aws_vpc" "vpc" {
 
 }
 
+# Internal getway (puerta de enalce)
 resource "aws_internet_gateway" "inet" {
   vpc_id = aws_vpc.vpc.id
   tags = {
@@ -14,7 +16,7 @@ resource "aws_internet_gateway" "inet" {
   }
 }
 
-
+# tabla de ruteo publica
 resource "aws_default_route_table" "public" {
   default_route_table_id = aws_vpc.vpc.default_route_table_id
 
@@ -28,6 +30,7 @@ resource "aws_default_route_table" "public" {
   }
 }
 
+# sub red a
 resource "aws_subnet" "a" {
   vpc_id            = aws_vpc.vpc.id
   cidr_block        = "10.0.0.0/24"
@@ -39,7 +42,8 @@ resource "aws_subnet" "a" {
 
   map_public_ip_on_launch = true
 }
-
+# sub red b
+ 
 resource "aws_subnet" "b" {
   vpc_id            = aws_vpc.vpc.id
   cidr_block        = "10.0.1.0/24"
